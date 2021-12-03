@@ -28,16 +28,16 @@ class CourseAdmin(admin.ModelAdmin):
 
 
 class LessonAdmin(admin.ModelAdmin):
+    inlines = [QuestionInline]
     list_display = ['title']
 
 
 class QuestionAdmin(admin.ModelAdmin):
-    inlines = [QuestionInline]
+    inlines = [ChoiceInline]
     list_display = ['question_text']
 
 
 class ChoiceAdmin(admin.ModelAdmin):
-    inlines = [ChoiceInline]
     list_display = ['choice_text']
 
 
