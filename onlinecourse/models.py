@@ -107,17 +107,18 @@ class Enrollment(models.Model):
     # question grade/mark
 class Question(models.Model):
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
+    order = models.IntegerField(default=0)
     question_text = models.CharField(max_length=200)
     grade = models.IntegerField(default=0)
 
     # <HINT> A sample model method to calculate if learner get the score of the question
-    #def is_get_score(self, selected_ids):
-    #    all_answers = self.choice_set.filter(is_correct=True).count()
-    #    selected_correct = self.choice_set.filter(is_correct=True, id__in=selected_ids).count()
-    #    if all_answers == selected_correct:
-    #        return True
-    #    else:
-    #        return False
+    def is_get_score(self, selected_ids):
+        all_answers = self.choice_set.filter(is_correct=True).count()
+        selected_correct = self.choice_set.filter(is_correct=True, id__in=selected_ids).count()
+        if all_answers == selected_correct:
+            return True
+        else:
+            return False
 
 
 #  <HINT> Create a Choice Model with:
@@ -129,6 +130,7 @@ class Question(models.Model):
 # class Choice(models.Model):
 class Choice(models.Model):
     choice = models.ForeignKey(Question, on_delete=models.CASCADE)
+    order = models.IntegerField(default=0)
     choice_text = models.CharField(max_length=200)
     is_correct = models.BooleanField(default=False)
 
