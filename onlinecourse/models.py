@@ -145,4 +145,8 @@ class Choice(models.Model):
 #    Other fields and methods you would like to design
 class Submission(models.Model):
     enrollment = models.ForeignKey(Enrollment, on_delete=models.CASCADE)
+    
+class Submission_choices(models.Model):
+    submission = models.ManyToManyField(Submission)
     choices = models.ManyToManyField(Choice)
+
