@@ -151,19 +151,20 @@ def extract_answers(request):
 
 
 def show_exam_result(request, course_id, submission_id):
+    context = {}
     course = get_object_or_404(Course, pk=course_id)
     submission = get_object_or_404(Submission, pk=submission_id)
-    #choices = get_object_or_404(Choice, pk=choice_id)
     choices = []
-    print(Submission_choices.objects.filter(submission=submission))
     choices = Submission_choices.objects.filter(submission=submission)
     
     total_score = int(0)
     for i in range (len(choices)):
         if choices[i].choices.get().is_correct == True:
             total_score = total_score + choices[i].choices.get().choice.grade
-    print(total_score)
-
-    return render(request, 'onlinecourse/exam_result_bootstrap.html', context)
+        
+    context["grade"] = total_score
+    
+    
+    return render(request, 'onlinecourse/exam_result_bootstrap.html',context)
 
   
