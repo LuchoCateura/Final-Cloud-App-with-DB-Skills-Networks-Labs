@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -36,15 +37,15 @@
 </nav>
 
 <div class="container-fluid">
-    {% if {{ context.0 }} >= 3 %}
+        {% if grade >= 3 %}
         <div class="alert alert-success">
-        <!--HINT Display passed info -->
-        <h5 class="">Exito</h5>
+            <!--HINT Display passed info -->
+            <h5 class="">  Success </h5>
         </div>
         {% else %}
         <div class="alert alert-danger">
             <!--HINT Display failed info -->
-            <h5 class="">F </h5>
+            <h5 class=""> Fail </h5>
         </div>
  
         {% endif %}
