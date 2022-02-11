@@ -48,7 +48,11 @@
                         <div class="card-header"><h5>Lesson {{lesson.order|add:1}} : {{lesson.title}}</h5></div>
                         <div class="card-body">{{lesson.content}}</div>
                     <div class="card mt-2">
-                        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#exam">Start Exam</button>
+                        {% if user.is_authenticated %}    
+                            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#exam">Start Exam</button>
+                        {% else %}
+                            <div class="card-header"><h5>You must login or Sing up first</h5></div>
+                        {% endif %}
                     </div>
                     </div>
                 {% endfor %}

@@ -65,7 +65,11 @@
                         <label class="form-check-label">
                             {% for choice in question.choice_set.all %}    
                                 <div>    
-                                    {{ choice.choice_text }}
+                                    {% if choice.is_correct == 1 %}   
+                                        <h5 style="color:green">Correct answer: {{ choice.choice_text }} </h5>
+                                    {% else %}
+                                    <h5> {{ choice.choice_text }} </h5>
+                                    {% endif %}
                                 </div>    
                             {% endfor %}
                         </label>
