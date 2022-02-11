@@ -144,12 +144,6 @@ def extract_answers(request):
         # For each selected choice, check if it is a correct answer or not
         # Calculate the total score
 
-#class ShowExamResultView(generic.DetailView):
-#    model = show_exam_result
-#    template_name =  'onlinecourse/exam_result_bootstrap.html'
-
-
-
 def show_exam_result(request, course_id, submission_id):
     course = get_object_or_404(Course, pk=course_id)
     submission = get_object_or_404(Submission, pk=submission_id)
@@ -162,7 +156,7 @@ def show_exam_result(request, course_id, submission_id):
             total_score = total_score + choices[i].choices.get().choice.grade
         
     total_score = int((total_score/5)*100)
-    context = {'grade':total_score}
+    context = {'grade':total_score, 'course':course,'submission_id':submission,'choices':choices}
   
     return render(request, 'onlinecourse/exam_result_bootstrap.html',context)
 
