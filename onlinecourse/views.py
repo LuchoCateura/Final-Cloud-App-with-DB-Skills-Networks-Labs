@@ -161,9 +161,9 @@ def show_exam_result(request, course_id, submission_id):
         if choices[i].choices.get().is_correct == True:
             total_score = total_score + choices[i].choices.get().choice.grade
         
+    total_score = int((total_score/5)*100)
     context = {'grade':total_score}
-    print(context["grade"])
-    
+  
     return render(request, 'onlinecourse/exam_result_bootstrap.html',context)
 
   
